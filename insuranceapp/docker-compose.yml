@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql
+    container_name: insuranceapp-mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=admin
+      - MYSQL_DATABASE=insuranceappDB
+      - MYSQL_USER=insuranceapp_user
+      - MYSQL_PASSWORD=insuranceapp_pass
+    ports:
+      - "4406:4406"
+    restart: always  
+    volumes:
+      - /data:/docker-entrypoint-initdb.d
+  insuranceapp-app:
+    image: spring-jpa-app
+    container_name: insuranceapp-app
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    depends_on:
+      - mysql
+    ports:
+      - 6090:6060
+    volumes:
+      - /data/compose-app
