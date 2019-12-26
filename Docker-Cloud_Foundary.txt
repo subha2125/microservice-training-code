@@ -6,6 +6,11 @@ step2
 cf push routename -p <jar>
 cf push globalins-cf -p <jar>
 
+*** CF Push ***
+cf push insuranceapp2019-cf -p insuranceapp-1.0.0.jar
+
+cf push insuranceappopenshift2019-cf -p insuranceappopenshift-1.0.0.jar 
+
 step3
 connect app to db service
 
